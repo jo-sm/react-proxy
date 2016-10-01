@@ -73,7 +73,11 @@ export default function createPrototypeProxy() {
    * Defines a property on the proxy.
    */
   function defineProxyProperty(name, descriptor) {
-    Object.defineProperty(proxy, name, descriptor);
+    try {
+      Object.defineProperty(proxy, name, descriptor);
+    } catch(e) {
+      console.error('Could not define ' + name + ' as a proxy.');
+    }
   }
 
   /**
